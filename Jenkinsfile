@@ -1,7 +1,7 @@
 pipeline {
     agent any  // Sử dụng bất kỳ agent nào có sẵn
 
-    tools{
+    tools {
         nodejs 'NodeJS'
     }
 
@@ -23,28 +23,11 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'npm run build'
+                // Đảm bảo lệnh npm run build chính xác và không có lỗi cú pháp
+                sh 'npm run build'  // Kiểm tra script "build" trong package.json
                 echo 'Build completed successfully.'
             }
         }
-
-        // stage('Build') {
-        //     steps {
-        //         // Xây dựng dự án, nếu cần (ví dụ như minify code, hoặc build production)
-        //         script {
-        //             echo 'Build stage, could be skipped if not needed'
-        //         }
-        //     }
-        // }
-
-        // stage('Deploy') {
-        //     steps {
-        //         // Triển khai ứng dụng (có thể là copy lên server hoặc chạy docker)
-        //         script {
-        //             echo 'Deploying to production or staging environment'
-        //         }
-        //     }
-        // }
     }
 
     post {
