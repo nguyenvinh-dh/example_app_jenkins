@@ -23,6 +23,7 @@ pipeline {
 
         stage('Build') {
             steps {
+                sh 'apt install npm'
                 // Đảm bảo lệnh npm run build chính xác và không có lỗi cú pháp
                 sh 'npm run build'  // Kiểm tra script "build" trong package.json
                 echo 'Build completed successfully.'
