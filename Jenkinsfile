@@ -25,7 +25,8 @@ pipeline {
             steps {
                 //sh 'apt install npm'
                 // Đảm bảo lệnh npm run build chính xác và không có lỗi cú pháp
-                sh 'npm run build'  // Kiểm tra script "build" trong package.json
+                //sh 'npm run build'  // Kiểm tra script "build" trong package.json
+                sh 'docker build -tmy-node-app:1.0 .'
                 echo 'Build completed successfully.'
             }
         }
