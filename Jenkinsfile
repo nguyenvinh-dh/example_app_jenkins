@@ -1,32 +1,26 @@
 pipeline {
-    agent any  // Sử dụng bất kỳ agent nào có sẵn
-
+    agent any
     tools {
         nodejs 'NodeJS'
     }
 
-    stages {
-        stage('Checkout') {
+    stages{
+        stage ('Checkout'){
             steps {
-                echo 'Checking out code...'
                 checkout scm
             }
         }
 
-        stage('Test') {
+        stage ('Test'){
             steps {
-                echo 'Testing...'
                 sh 'node -v'
                 sh 'npm -v'
             }
         }
 
-        stage('Build') {
-            steps {
-                //sh 'apt install npm'
-                // Đảm bảo lệnh npm run build chính xác và không có lỗi cú pháp
-                sh 'npm run build'  // Kiểm tra script "build" trong package.json
-                echo 'Build completed successfully.'
+        stage ('Build'){
+            T {
+                sh 'npm run build'
             }
         }
     }
