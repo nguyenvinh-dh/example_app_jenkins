@@ -1,6 +1,6 @@
 FROM node:latest
 WORKDIR /apps
 COPY . /apps
-RUN rmp install && npm run build
+RUN npm install && npm run build
 EXPOSE 3000
 CMD ["node", "index.js"]
