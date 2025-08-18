@@ -5,22 +5,25 @@ pipeline {
     }
 
     stages{
-        stage ('Checkout'){
+        stage ('Checkout') {
             steps {
+                echo 'Checking out code...'
                 checkout scm
             }
         }
 
-        stage ('Test'){
+        stage ('Test') {
             steps {
+                echo 'Testing...'
                 sh 'node -v'
                 sh 'npm -v'
             }
         }
 
-        stage ('Build'){
-            T {
+        stage ('Build') {
+            {
                 sh 'npm run build'
+                echo 'Build completed successfully.'
             }
         }
     }
