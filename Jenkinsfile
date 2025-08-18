@@ -40,8 +40,8 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(
                         credentialsId: 'testpush',
-                        passwordVariable: 'dckr_pat_Ht6B9MVHsGvd_EgJ4RIB1jCNty0',
-                        usernameVariable: 'nvvinht25014'
+                        passwordVariable: 'DOCKER_PASSWORD',
+                        usernameVariable: 'DOCKER_USERNAME'
                     )]) {
                         sh '''
                         echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
