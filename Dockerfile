@@ -1,4 +1,4 @@
-FROM node:lates
+FROM node:latest
 WORKDIR /apps
 COPY . /apps
 RUN rmp install && npm run build
