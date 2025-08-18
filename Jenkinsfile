@@ -5,6 +5,10 @@ pipeline {
         nodejs 'NodeJS'
     }
 
+    environment {
+        DOCKER_HUB_REPO = "nvvinht25014/test_push"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -28,6 +32,24 @@ pipeline {
                 //sh 'npm run build'  // Kiểm tra script "build" trong package.json
                 sh 'docker build -t my-node-app:1.0 .'
                 echo 'Build completed successfully.'
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(
+                        credentialsId: 'testpush',
+                        passwordVariable: 'dckr_pat_Ht6B9MVHsGvd_EgJ4RIB1jCNty0',
+                        usernameVariable: 'nvvinht25014'
+                    )]) {
+                        sh '''
+                        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                        docker push ${DOCKER_HUB_REPO}:1.0
+                        docker logout
+                        '''
+                    }
+                }
             }
         }
     }
